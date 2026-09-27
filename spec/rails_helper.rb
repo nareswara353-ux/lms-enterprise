@@ -51,3 +51,10 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+Capybara.configure do |config|
+  config.default_driver = :rack_test
+  config.javascript_driver = :selenium_chrome_headless
+  config.default_max_wait_time = 5
+  config.server = :puma, { Silent: true }
+end
