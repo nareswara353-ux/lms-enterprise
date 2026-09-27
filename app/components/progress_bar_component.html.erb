@@ -1,0 +1,11 @@
+<div class="progress-bar-wrapper">
+  <% if label.present? %>
+    <div class="progress-label">
+      <span><%= label %></span>
+      <span><%= progress %>%</span>
+    </div>
+  <% end %>
+  <div class="progress-bar">
+    <div class="progress-fill <%= variant %>" style="width: <%= progress %>%"></div>
+  </div>
+</div>
