@@ -1,0 +1,12 @@
+<article class="course-card">
+  <header>
+    <h3><%= link_to course.title, course_path(course) %></h3>
+    <%= render BadgeComponent.new(label: course.level.humanize, variant: course.level.to_sym) %>
+  </header>
+  <p class="instructor">by <%= course.instructor.name %></p>
+  <p class="description"><%= truncate(course.description, length: 120) %></p>
+  <footer>
+    <span class="duration"><%= course.duration %> menit</span>
+    <span class="price"><%= formatted_price %></span>
+  </footer>
+</article>
