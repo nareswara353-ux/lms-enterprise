@@ -1,0 +1,10 @@
+<div class="empty-state">
+  <div class="empty-icon"><%= icon %></div>
+  <h3><%= title %></h3>
+  <% if description.present? %>
+    <p><%= description %></p>
+  <% end %>
+  <% if action? %>
+    <%= link_to action_label, action_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
