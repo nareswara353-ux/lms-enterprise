@@ -14,6 +14,7 @@ gem "jbuilder"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
+gem "view_component", "~> 3.20"
 
 gem "active_storage_validations", "~> 1.1"
 gem "aws-sdk-s3", "~> 1.146"
