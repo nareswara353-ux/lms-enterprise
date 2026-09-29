@@ -4,10 +4,12 @@ module Api
       before_action :set_course, only: [:show]
 
       def index
-        courses = policy_scope(Course).published
-        courses = courses.where(level: params[:level]) if params[:level].present?
-        courses = courses.order(created_at: :desc).page(params[:page]).per(params[:per_page] || 20)
-        render json: courses.map { |c| course_payload(c) }
+        courses = CourseQuery.call(policy_scope(Course), query_params)
+        courses = courses.page(params[:page]).per(params[:per_page] || 20)
+        render json: {
+          data: courses.map { |c| course_payload(c) },
+          meta: pagination_meta(courses)
+        }
       end
 
       def show
@@ -16,6 +18,19 @@ module Api
       end
 
       private
+
+      def query_params
+        params.permit(:q, :status, :level, :instructor_id, :price, :sort).to_h
+      end
+
+      def pagination_meta(collection)
+        {
+          current_page: collection.current_page,
+          total_pages: collection.total_pages,
+          total_count: collection.total_count,
+          per_page: collection.limit_value
+        }
+      end
 
       def set_course
         @course = Course.find_by!(slug: params.expect(:id))
