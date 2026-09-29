@@ -20,7 +20,7 @@ gem "active_storage_validations", "~> 1.1"
 gem "aws-sdk-s3", "~> 1.146"
 gem "devise", "~> 4.9"
 gem "image_processing", "~> 1.12"
-gem "pg_search", "~> 2.3"
+gem "pg_search", "~> 2.4"
 gem "pundit", "~> 2.5"
 gem "stripe", "~> 10.0"
 
