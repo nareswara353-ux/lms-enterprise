@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path, alert: 'Anda tidak memiliki akses.') }
+      format.html { redirect_back_or_to(root_path, alert: 'Anda tidak memiliki akses.') }
       format.json { render json: { error: 'Forbidden' }, status: :forbidden }
     end
   end

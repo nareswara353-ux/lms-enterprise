@@ -31,9 +31,7 @@ class Lesson < ApplicationRecord
   def set_default_position
     self.position = course_module.lessons.maximum(:position).to_i + 1 if position.blank?
   end
-end
 
-class Lesson
   def to_param
     slug
   end

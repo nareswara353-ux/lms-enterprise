@@ -38,9 +38,7 @@ class Course < ApplicationRecord
   def generate_slug
     self.slug = title.parameterize
   end
-end
 
-class Course
   def to_param
     slug
   end
