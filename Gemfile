@@ -5,7 +5,7 @@ gem "connection_pool", "~> 2.5"
 gem "pg", "~> 1.5"
 gem "puma", ">= 5.0"
 gem "rails", "~> 8.1.0"
-gem "redis", "~> 5.0"
+gem "redis", "~> 6.0"
 gem "sidekiq", "~> 8.0.10"
 
 gem "dartsass-rails"
