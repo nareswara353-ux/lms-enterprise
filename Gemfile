@@ -22,7 +22,7 @@ gem "devise", "~> 4.9"
 gem "image_processing", "~> 1.12"
 gem "pg_search", "~> 2.3"
 gem "pundit", "~> 2.5"
-gem "stripe", "~> 10.0"
+gem "stripe", "~> 19.6"
 
 gem "kaminari", "~> 1.2"
 gem "rack-cors", "~> 2.0"
