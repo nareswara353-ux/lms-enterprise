@@ -9,8 +9,8 @@ module Seeds
       seed_payments
       seed_certificates
       seed_notifications
-      puts "  Topics: #{DiscussionTopic.count}, Posts: #{DiscussionPost.count}"
-      puts "  Payments: #{Payment.count}, Certificates: #{Certificate.count}, Notifications: #{Notification.count}"
+      Rails.logger.debug { "  Topics: #{DiscussionTopic.count}, Posts: #{DiscussionPost.count}" }
+      Rails.logger.debug { "  Payments: #{Payment.count}, Certificates: #{Certificate.count}, Notifications: #{Notification.count}" }
     end
 
     private
@@ -35,6 +35,7 @@ module Seeds
       Payment.where(status: :successful).first_or_create! do |p|
         enrollment = Enrollment.first
         next unless enrollment
+
         p.user = enrollment.user
         p.course = enrollment.course
         p.status = :successful

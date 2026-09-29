@@ -8,7 +8,7 @@ class QuizSubmissionsController < ApplicationController
   end
 
   def create
-    quiz = Quiz.find(params[:quiz_id])
+    quiz = Quiz.find(params.expect(:quiz_id))
     @submission = quiz.quiz_submissions.build(user: current_user, status: :in_progress)
     authorize @submission
     if @submission.save
@@ -34,6 +34,6 @@ class QuizSubmissionsController < ApplicationController
   private
 
   def set_submission
-    @submission = QuizSubmission.find(params[:id])
+    @submission = QuizSubmission.find(params.expect(:id))
   end
 end

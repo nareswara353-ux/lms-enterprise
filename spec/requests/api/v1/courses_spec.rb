@@ -8,14 +8,14 @@ RSpec.describe "Api::V1::Courses", type: :request do
     it "returns published courses" do
       get "/api/v1/courses"
       expect(response).to have_http_status(:ok)
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json.size).to eq(3)
     end
 
     it "excludes draft courses" do
       get "/api/v1/courses"
-      json = JSON.parse(response.body)
-      ids = json.map { |c| c["id"] }
+      json = response.parsed_body
+      ids = json.pluck("id")
       expect(ids).not_to include(draft_course.id)
     end
   end
@@ -26,7 +26,7 @@ RSpec.describe "Api::V1::Courses", type: :request do
     it "returns course detail" do
       get "/api/v1/courses/#{course.slug}"
       expect(response).to have_http_status(:ok)
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json["title"]).to eq(course.title)
     end
   end

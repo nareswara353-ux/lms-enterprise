@@ -12,9 +12,7 @@ module Api
         current_api_user
       end
 
-      def current_api_user
-        @current_api_user
-      end
+      attr_reader :current_api_user
 
       def handle_forbidden
         render json: { error: "Forbidden" }, status: :forbidden

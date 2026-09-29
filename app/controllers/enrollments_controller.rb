@@ -11,7 +11,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def destroy
-    enrollment = current_user.enrollments.find(params[:id])
+    enrollment = current_user.enrollments.find(params.expect(:id))
     authorize enrollment
     course = enrollment.course
     enrollment.destroy
@@ -21,6 +21,6 @@ class EnrollmentsController < ApplicationController
   private
 
   def set_course
-    @course = Course.find_by!(slug: params[:course_id])
+    @course = Course.find_by!(slug: params.expect(:course_id))
   end
 end

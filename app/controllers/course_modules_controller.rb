@@ -35,14 +35,14 @@ class CourseModulesController < ApplicationController
   private
 
   def set_course
-    @course = Course.find_by!(slug: params[:course_id])
+    @course = Course.find_by!(slug: params.expect(:course_id))
   end
 
   def set_course_module
-    @course_module = @course.course_modules.find(params[:id])
+    @course_module = @course.course_modules.find(params.expect(:id))
   end
 
   def course_module_params
-    params.require(:course_module).permit(:title, :description, :position, :status)
+    params.expect(course_module: [:title, :description, :position, :status])
   end
 end

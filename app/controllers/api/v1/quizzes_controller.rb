@@ -2,6 +2,7 @@ module Api
   module V1
     class QuizzesController < BaseController
       include ApiAuthenticatable
+
       before_action :set_course, only: [:index]
       before_action :set_quiz, only: [:show]
 
@@ -18,11 +19,11 @@ module Api
       private
 
       def set_course
-        @course = Course.find_by!(slug: params[:course_id])
+        @course = Course.find_by!(slug: params.expect(:course_id))
       end
 
       def set_quiz
-        @quiz = Quiz.find(params[:id])
+        @quiz = Quiz.find(params.expect(:id))
       end
     end
   end

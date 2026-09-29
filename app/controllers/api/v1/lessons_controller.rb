@@ -11,7 +11,7 @@ module Api
       private
 
       def set_lesson
-        @lesson = Lesson.find_by!(slug: params[:id])
+        @lesson = Lesson.find_by!(slug: params.expect(:id))
       end
     end
   end

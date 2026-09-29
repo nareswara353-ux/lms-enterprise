@@ -9,7 +9,7 @@ RSpec.describe "Api::V1::Certificates", type: :request do
     it "returns certificate details for valid code" do
       get "/api/v1/certificates/#{certificate.code}/verify"
       expect(response).to have_http_status(:ok)
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json["code"]).to eq(certificate.code)
       expect(json["valid"]).to be true
     end

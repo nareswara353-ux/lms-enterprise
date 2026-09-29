@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
   include PgSearch::Model
+
   pg_search_scope :search_by_title, against: [:title, :description], using: { tsearch: { prefix: true } }
   enum :status, { draft: 0, published: 1, archived: 2 }
   enum :level, { beginner: 0, intermediate: 1, advanced: 2 }

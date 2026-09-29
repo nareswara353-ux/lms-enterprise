@@ -5,7 +5,7 @@ RSpec.describe "HealthCheck", type: :request do
     it "returns health status" do
       get "/health"
       expect(response).to have_http_status(:ok)
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json).to have_key("database")
       expect(json).to have_key("timestamp")
     end

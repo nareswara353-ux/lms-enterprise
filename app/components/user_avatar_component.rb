@@ -9,7 +9,7 @@ class UserAvatarComponent < ApplicationComponent
   attr_reader :user, :size
 
   def initials
-    user.name.to_s.split.map { |n| n[0] }.first(2).join.upcase
+    user.name.to_s.split.pluck(0).first(2).join.upcase
   end
 
   def css_size

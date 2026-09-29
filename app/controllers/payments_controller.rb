@@ -7,11 +7,11 @@ class PaymentsController < ApplicationController
   end
 
   def show
-    @payment = current_user.payments.find(params[:id])
+    @payment = current_user.payments.find(params.expect(:id))
   end
 
   def create
-    course = Course.find(params[:course_id])
+    course = Course.find(params.expect(:course_id))
     payment = current_user.payments.create!(course: course, amount: course.price, currency: "idr", status: :pending)
     checkout_url = StripeCheckoutService.new(payment).call
     redirect_to checkout_url, allow_other_host: true

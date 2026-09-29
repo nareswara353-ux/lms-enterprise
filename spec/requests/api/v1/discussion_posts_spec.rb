@@ -12,7 +12,7 @@ RSpec.describe "Api::V1::DiscussionPosts", type: :request do
     it "returns posts for topic" do
       get "/api/v1/discussion_topics/#{topic.id}/discussion_posts", headers: auth_headers
       expect(response).to have_http_status(:ok)
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json.size).to eq(1)
     end
   end
@@ -21,7 +21,7 @@ RSpec.describe "Api::V1::DiscussionPosts", type: :request do
     it "returns post detail" do
       get "/api/v1/discussion_posts/#{post_record.id}", headers: auth_headers
       expect(response).to have_http_status(:ok)
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json["author"]).to be_present
     end
   end

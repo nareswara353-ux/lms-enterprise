@@ -45,7 +45,7 @@ class QuizzesController < ApplicationController
 
   def submit
     authorize @quiz, :submit?
-    submission = @quiz.quiz_submissions.find(params[:submission_id])
+    submission = @quiz.quiz_submissions.find(params.expect(:submission_id))
     submission.update!(answers: params[:answers]&.to_unsafe_h || {})
     QuizGradingService.new(submission).call
     redirect_to quiz_submission_path(submission), notice: "Quiz selesai."
@@ -54,14 +54,14 @@ class QuizzesController < ApplicationController
   private
 
   def set_course
-    @course = Course.find_by!(slug: params[:course_id])
+    @course = Course.find_by!(slug: params.expect(:course_id))
   end
 
   def set_quiz
-    @quiz = Quiz.find(params[:id])
+    @quiz = Quiz.find(params.expect(:id))
   end
 
   def quiz_params
-    params.require(:quiz).permit(:title, :description, :time_limit, :passing_score, :status, :lesson_id)
+    params.expect(quiz: [:title, :description, :time_limit, :passing_score, :status, :lesson_id])
   end
 end

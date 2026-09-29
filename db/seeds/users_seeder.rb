@@ -5,7 +5,7 @@ module Seeds
     end
 
     def call
-      admin = User.find_or_create_by!(email: "admin@lms.test") do |u|
+      User.find_or_create_by!(email: "admin@lms.test") do |u|
         u.name = "Admin LMS"
         u.password = "password123"
         u.password_confirmation = "password123"
@@ -34,7 +34,7 @@ module Seeds
         end
       end
 
-      puts "  Users: #{User.count}"
+      Rails.logger.debug { "  Users: #{User.count}" }
     end
   end
 end

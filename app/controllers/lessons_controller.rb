@@ -50,14 +50,14 @@ class LessonsController < ApplicationController
   private
 
   def set_course_module
-    @course_module = CourseModule.find(params[:course_module_id])
+    @course_module = CourseModule.find(params.expect(:course_module_id))
   end
 
   def set_lesson
-    @lesson = Lesson.find_by!(slug: params[:id])
+    @lesson = Lesson.find_by!(slug: params.expect(:id))
   end
 
   def lesson_params
-    params.require(:lesson).permit(:title, :content, :video_url, :duration, :position, :status, :lesson_type)
+    params.expect(lesson: [:title, :content, :video_url, :duration, :position, :status, :lesson_type])
   end
 end

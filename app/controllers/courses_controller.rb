@@ -17,6 +17,10 @@ class CoursesController < ApplicationController
     authorize @course
   end
 
+  def edit
+    authorize @course
+  end
+
   def create
     @course = current_user.courses.build(course_params)
     authorize @course
@@ -25,10 +29,6 @@ class CoursesController < ApplicationController
     else
       render :new, status: :unprocessable_content
     end
-  end
-
-  def edit
-    authorize @course
   end
 
   def update
@@ -61,10 +61,10 @@ class CoursesController < ApplicationController
   private
 
   def set_course
-    @course = Course.find_by!(slug: params[:id])
+    @course = Course.find_by!(slug: params.expect(:id))
   end
 
   def course_params
-    params.require(:course).permit(:title, :description, :price, :status, :level, :duration, :cover_image)
+    params.expect(course: [:title, :description, :price, :status, :level, :duration, :cover_image])
   end
 end

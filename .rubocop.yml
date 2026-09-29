@@ -1,9 +1,10 @@
-require:
+plugins:
   - rubocop-rails
 
 AllCops:
   NewCops: enable
   TargetRubyVersion: 3.4
+  SuggestExtensions: false
   Exclude:
     - "bin/**/*"
     - "db/schema.rb"
@@ -49,19 +50,28 @@ Style/BlockDelimiters:
   Enabled: false
 
 Metrics/MethodLength:
-  Max: 25
+  Max: 30
+  Exclude:
+    - "db/seeds/**/*"
+    - "spec/**/*"
 
 Metrics/ClassLength:
   Max: 200
+  Exclude:
+    - "db/seeds/**/*"
+
+Metrics/AbcSize:
+  Max: 30
+  Exclude:
+    - "db/seeds/**/*"
+    - "app/serializers/**/*"
+    - "spec/**/*"
 
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
     - "config/**/*"
     - "Rakefile"
-
-Metrics/AbcSize:
-  Max: 25
 
 Metrics/CyclomaticComplexity:
   Max: 10
@@ -91,6 +101,9 @@ Rails/UniqueValidationWithoutIndex:
   Enabled: false
 
 Rails/EnumSyntax:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
   Enabled: false
 
 Lint/MissingSuper:

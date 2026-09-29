@@ -18,7 +18,7 @@ module Api
       private
 
       def set_course
-        @course = Course.find_by!(slug: params[:id])
+        @course = Course.find_by!(slug: params.expect(:id))
       end
 
       def course_payload(course, detailed: false)

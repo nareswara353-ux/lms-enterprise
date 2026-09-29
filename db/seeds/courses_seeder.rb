@@ -29,7 +29,7 @@ module Seeds
         seed_modules(course)
       end
 
-      puts "  Courses: #{Course.count}, Modules: #{CourseModule.count}, Lessons: #{Lesson.count}"
+      Rails.logger.debug { "  Courses: #{Course.count}, Modules: #{CourseModule.count}, Lessons: #{Lesson.count}" }
     end
 
     private

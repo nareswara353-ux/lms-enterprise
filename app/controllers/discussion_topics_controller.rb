@@ -41,14 +41,14 @@ class DiscussionTopicsController < ApplicationController
   private
 
   def set_course
-    @course = Course.find_by!(slug: params[:course_id])
+    @course = Course.find_by!(slug: params.expect(:course_id))
   end
 
   def set_topic
-    @topic = DiscussionTopic.find(params[:id])
+    @topic = DiscussionTopic.find(params.expect(:id))
   end
 
   def topic_params
-    params.require(:discussion_topic).permit(:title, :content, :status, :pinned)
+    params.expect(discussion_topic: [:title, :content, :status, :pinned])
   end
 end

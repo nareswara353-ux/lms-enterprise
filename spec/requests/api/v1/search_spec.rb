@@ -8,14 +8,14 @@ RSpec.describe "Api::V1::Search", type: :request do
     it "returns matching courses and users" do
       get "/api/v1/search", params: { q: "Ruby" }
       expect(response).to have_http_status(:ok)
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json["courses"]).not_to be_empty
       expect(json["users"]).not_to be_empty
     end
 
     it "returns empty arrays for blank query" do
       get "/api/v1/search", params: { q: "" }
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json["courses"]).to eq([])
       expect(json["users"]).to eq([])
     end

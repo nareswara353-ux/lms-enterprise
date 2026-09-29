@@ -19,7 +19,7 @@ module Seeds
         end
       end
 
-      puts "  Enrollments: #{Enrollment.count}, Completions: #{LessonCompletion.count}"
+      Rails.logger.debug { "  Enrollments: #{Enrollment.count}, Completions: #{LessonCompletion.count}" }
     end
 
     private

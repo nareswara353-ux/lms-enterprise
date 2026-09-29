@@ -2,6 +2,7 @@ module Api
   module V1
     class DiscussionPostsController < BaseController
       include ApiAuthenticatable
+
       before_action :set_topic, only: [:index, :create]
       before_action :set_post, only: [:show]
 
@@ -26,15 +27,15 @@ module Api
       private
 
       def set_topic
-        @topic = DiscussionTopic.find(params[:discussion_topic_id])
+        @topic = DiscussionTopic.find(params.expect(:discussion_topic_id))
       end
 
       def set_post
-        @post = DiscussionPost.find(params[:id])
+        @post = DiscussionPost.find(params.expect(:id))
       end
 
       def post_params
-        params.require(:discussion_post).permit(:content, :parent_id)
+        params.expect(discussion_post: [:content, :parent_id])
       end
     end
   end

@@ -9,7 +9,7 @@ module Api
       end
 
       def update
-        notification = current_api_user.notifications.find(params[:id])
+        notification = current_api_user.notifications.find(params.expect(:id))
         notification.mark_as_read!
         render json: NotificationSerializer.serialize(notification)
       end

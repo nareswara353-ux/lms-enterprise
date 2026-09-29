@@ -10,7 +10,7 @@ RSpec.describe "Api::V1::Notifications", type: :request do
     it "returns user notifications" do
       get "/api/v1/notifications", headers: auth_headers
       expect(response).to have_http_status(:ok)
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json.size).to be >= 1
     end
 

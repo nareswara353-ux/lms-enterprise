@@ -6,7 +6,7 @@ module Seeds
 
     def call
       Course.published.each { |course| seed_quiz_for(course) }
-      puts "  Questions: #{Question.count}, Quizzes: #{Quiz.count}, Submissions: #{QuizSubmission.count}"
+      Rails.logger.debug { "  Questions: #{Question.count}, Quizzes: #{Quiz.count}, Submissions: #{QuizSubmission.count}" }
     end
 
     private
@@ -44,8 +44,8 @@ module Seeds
     def seed_submissions(quiz)
       quiz.course.students.limit(3).each do |student|
         submission = quiz.quiz_submissions.create!(user: student, status: :in_progress)
-        answers = quiz.questions.pluck(:id).each_with_object({}) do |qid, hash|
-          hash[qid.to_s] = %w[A B C D].sample
+        answers = quiz.questions.pluck(:id).to_h do |qid|
+          [qid.to_s, %w[A B C D].sample]
         end
         submission.update!(answers: answers)
         QuizGradingService.new(submission).call

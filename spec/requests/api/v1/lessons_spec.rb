@@ -7,7 +7,7 @@ RSpec.describe "Api::V1::Lessons", type: :request do
     it "returns lesson detail" do
       get "/api/v1/lessons/#{lesson.slug}"
       expect(response).to have_http_status(:ok)
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json["title"]).to eq(lesson.title)
       expect(json["course_module"]).to be_present
     end

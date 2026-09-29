@@ -3,11 +3,11 @@ module Users
     private
 
     def sign_up_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :bio, :role)
+      params.expect(user: [:name, :email, :password, :password_confirmation, :bio, :role])
     end
 
     def account_update_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :bio, :avatar)
+      params.expect(user: [:name, :email, :password, :password_confirmation, :current_password, :bio, :avatar])
     end
 
     def after_sign_up_path_for(_resource)
