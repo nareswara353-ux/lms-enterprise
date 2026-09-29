@@ -63,4 +63,4 @@ group :test do
   gem "shoulda-matchers", "~> 6.0"
 end
 
-gem "json", "~> 2.7"
+gem "json", "~> 3.0"
