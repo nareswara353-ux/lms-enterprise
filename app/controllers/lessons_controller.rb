@@ -22,7 +22,7 @@ class LessonsController < ApplicationController
   def update
     authorize @lesson
     if @lesson.update(lesson_params)
-      redirect_to lesson_path(@lesson), notice: "Lesson diperbarui."
+      redirect_to course_module_lesson_path(@lesson.course_module, @lesson), notice: "Lesson diperbarui."
     else
       render :edit, status: :unprocessable_content
     end
@@ -38,13 +38,13 @@ class LessonsController < ApplicationController
   def complete
     authorize @lesson, :show?
     LessonCompletion.find_or_create_by!(user: current_user, lesson: @lesson)
-    redirect_to lesson_path(@lesson), notice: "Lesson selesai!"
+    redirect_to course_module_lesson_path(@lesson.course_module, @lesson), notice: "Lesson selesai!"
   end
 
   def incomplete
     authorize @lesson, :show?
     LessonCompletion.where(user: current_user, lesson: @lesson).destroy_all
-    redirect_to lesson_path(@lesson), notice: "Progress dibatalkan."
+    redirect_to course_module_lesson_path(@lesson.course_module, @lesson), notice: "Progress dibatalkan."
   end
 
   private

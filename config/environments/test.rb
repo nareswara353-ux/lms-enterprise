@@ -69,3 +69,22 @@ end
 Rails.application.configure do
   config.active_job.queue_adapter = :test
 end
+
+Devise.setup do |config|
+  config.confirm_within = 0
+end
+
+Rails.application.configure do
+  config.action_mailer.default_url_options = { host: "localhost" }
+end
+
+module Devise
+  module Models
+    module Confirmable
+      def confirm!
+        self.confirmed_at ||= Time.current
+        save!(validate: false)
+      end
+    end
+  end
+end

@@ -1,0 +1,27 @@
+<% content_for :title, "Diskusi - #{@course.title}" %>
+
+<h1>Diskusi: <%= @course.title %></h1>
+
+<% if user_signed_in? %>
+  <%= form_with model: [@course, DiscussionTopic.new], local: true do |f| %>
+    <div class="field">
+      <%= f.label :title, "Judul Topik" %>
+      <%= f.text_field :title, required: true %>
+    </div>
+    <div class="field">
+      <%= f.label :content, "Isi" %>
+      <%= f.text_area :content, rows: 3, required: true %>
+    </div>
+    <%= f.submit "Buat Topik", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
+
+<ul class="discussion-topics">
+  <% @topics.each do |topic| %>
+    <li>
+      <%= link_to topic.title, course_discussion_topic_path(@course, topic) %>
+      <span>oleh <%= topic.user.name %></span>
+      <span><%= topic.posts_count %> balasan</span>
+    </li>
+  <% end %>
+</ul>

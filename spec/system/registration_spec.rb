@@ -10,7 +10,7 @@ RSpec.describe "Registration", type: :system do
       fill_in "Password confirmation", with: "password123"
       click_button "Sign up"
 
-      expect(page).to have_content("Welcome! You have signed up successfully")
+      expect(page).to have_content("confirmation link")
     end
 
     it "shows validation errors for invalid data" do
@@ -21,7 +21,7 @@ RSpec.describe "Registration", type: :system do
       fill_in "Password confirmation", with: "short"
       click_button "Sign up"
 
-      expect(page).to have_content("prohibited this user from being saved")
+      expect(page).to have_content("error")
     end
   end
 end

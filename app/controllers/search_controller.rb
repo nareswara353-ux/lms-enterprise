@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, raise: false
 
   def index
     @query = params[:q].to_s.strip

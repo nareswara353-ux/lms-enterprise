@@ -1,5 +1,5 @@
 class CertificatesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:verify]
+  skip_before_action :authenticate_user!, only: [:verify], raise: false
 
   def index
     @certificates = current_user.certificates.includes(:course)

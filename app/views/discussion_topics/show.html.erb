@@ -1,0 +1,19 @@
+<% content_for :title, @topic.title %>
+
+<article class="discussion-topic">
+  <h1><%= @topic.title %></h1>
+  <p class="author">oleh <%= @topic.user.name %></p>
+  <div class="content"><%= simple_format(@topic.content) %></div>
+</article>
+
+<section class="posts">
+  <h2>Balasan</h2>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <strong><%= post.user.name %></strong>
+        <p><%= post.content %></p>
+      </li>
+    <% end %>
+  </ul>
+</section>

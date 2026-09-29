@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    sessions: "users/sessions",
-    registrations: "users/registrations",
-    confirmations: "users/confirmations",
-    passwords: "users/passwords"
-  }
+  devise_for :users
 
   root "home#index"
 
@@ -14,8 +9,8 @@ Rails.application.routes.draw do
   resources :courses do
     resources :modules, controller: "course_modules", only: [:create, :update, :destroy]
     resources :enrollments, only: [:create, :destroy]
-    resources :discussion_topics, only: [:index, :create, :update, :destroy]
-    resources :quizzes, only: [:index, :create, :update, :destroy]
+    resources :discussion_topics, only: [:index, :show, :create, :update, :destroy]
+    resources :quizzes, only: [:index, :show, :create, :update, :destroy]
     member do
       get :students
       get :analytics
@@ -45,16 +40,16 @@ Rails.application.routes.draw do
   post "payments/webhook", to: "payments#webhook"
 
   resources :certificates, only: [:index, :show]
-  get "certificates/:code/verify", to: "certificates#verify"
+  get "certificates/:code/verify", to: "certificates#verify", as: :verify_certificate
 
   resources :notifications, only: [:index, :update] do
     patch :mark_all_read, on: :collection
   end
 
   resources :users, only: [:show, :update]
-  get "dashboard", to: "dashboard#index"
-  get "dashboard/instructor", to: "dashboard#instructor"
-  get "dashboard/admin", to: "dashboard#admin"
+  get "dashboard", to: "dashboard#index", as: :dashboard
+  get "dashboard/instructor", to: "dashboard#instructor", as: :instructor_dashboard
+  get "dashboard/admin", to: "dashboard#admin", as: :admin_dashboard
 
   namespace :api do
     namespace :v1 do
@@ -72,7 +67,7 @@ Rails.application.routes.draw do
       resources :users, only: [:show]
       get "search", to: "search#index"
       resources :notifications, only: [:index, :update]
-      get "certificates/:code/verify", to: "certificates#verify"
+      get "certificates/:code/verify", to: "certificates#verify", as: :verify_certificate
       resources :quizzes, only: [:show]
       resources :enrollments, only: [:create, :destroy]
       resources :quiz_submissions, only: [:create, :show]

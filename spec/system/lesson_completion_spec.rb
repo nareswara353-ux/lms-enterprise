@@ -12,7 +12,7 @@ RSpec.describe "Lesson Completion", type: :system do
   end
 
   it "allows student to mark lesson as complete" do
-    visit lesson_path(lesson)
+    visit course_module_lesson_path(modul, lesson)
     click_button "Tandai Selesai"
 
     expect(page).to have_content("Lesson selesai")
@@ -21,7 +21,7 @@ RSpec.describe "Lesson Completion", type: :system do
 
   it "allows student to unmark completed lesson" do
     create(:lesson_completion, user: student, lesson: lesson)
-    visit lesson_path(lesson)
+    visit course_module_lesson_path(modul, lesson)
     click_button "Tandai Belum Selesai"
 
     expect(page).to have_content("Progress dibatalkan")

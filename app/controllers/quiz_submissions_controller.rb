@@ -12,7 +12,7 @@ class QuizSubmissionsController < ApplicationController
     @submission = quiz.quiz_submissions.build(user: current_user, status: :in_progress)
     authorize @submission
     if @submission.save
-      redirect_to quiz_submission_path(@submission)
+      redirect_to quiz_quiz_submission_path(@submission.quiz, @submission)
     else
       redirect_to quiz_path(quiz), alert: @submission.errors.full_messages.join(", ")
     end
@@ -22,13 +22,13 @@ class QuizSubmissionsController < ApplicationController
     authorize @submission
     @submission.update!(answers: params[:answers]&.to_unsafe_h || {})
     QuizGradingService.new(@submission).call
-    redirect_to quiz_submission_path(@submission), notice: "Quiz dinilai."
+    redirect_to quiz_quiz_submission_path(@submission.quiz, @submission), notice: "Quiz dinilai."
   end
 
   def grade
     authorize @submission, :grade?
     QuizGradingService.new(@submission).call
-    redirect_to quiz_submission_path(@submission), notice: "Re-grading selesai."
+    redirect_to quiz_quiz_submission_path(@submission.quiz, @submission), notice: "Re-grading selesai."
   end
 
   private

@@ -39,3 +39,9 @@ class Course < ApplicationRecord
     self.slug = title.parameterize
   end
 end
+
+class Course
+  def to_param
+    slug
+  end
+end

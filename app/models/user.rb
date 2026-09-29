@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :enrolled_courses, through: :enrollments, source: :course
   has_many :quiz_submissions, dependent: :destroy
+  has_many :certificates, dependent: :destroy
   has_many :discussion_posts, dependent: :destroy
   has_many :notifications, as: :recipient, dependent: :destroy
 
