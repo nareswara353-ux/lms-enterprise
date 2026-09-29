@@ -1,11 +1,11 @@
 class EnrollmentQuery < ApplicationQuery
   def call
     relation
-      .then { |r| filter_by_status(r) }
-      .then { |r| filter_by_course(r) }
-      .then { |r| filter_by_user(r) }
-      .then { |r| filter_by_progress(r) }
-      .then { |r| sorted(r) }
+      .then { |rel| filter_by_status(rel) }
+      .then { |rel| filter_by_course(rel) }
+      .then { |rel| filter_by_user(rel) }
+      .then { |rel| filter_by_progress(rel) }
+      .then { |rel| sorted(rel) }
   end
 
   private
@@ -14,29 +14,29 @@ class EnrollmentQuery < ApplicationQuery
     Enrollment.includes(:user, :course)
   end
 
-  def filter_by_status(r)
-    params[:status].present? ? r.where(status: params[:status]) : r
+  def filter_by_status(rel)
+    params[:status].present? ? rel.where(status: params[:status]) : rel
   end
 
-  def filter_by_course(r)
-    params[:course_id].present? ? r.where(course_id: params[:course_id]) : r
+  def filter_by_course(rel)
+    params[:course_id].present? ? rel.where(course_id: params[:course_id]) : rel
   end
 
-  def filter_by_user(r)
-    params[:user_id].present? ? r.where(user_id: params[:user_id]) : r
+  def filter_by_user(rel)
+    params[:user_id].present? ? rel.where(user_id: params[:user_id]) : rel
   end
 
-  def filter_by_progress(r)
-    return r if params[:min_progress].blank?
+  def filter_by_progress(rel)
+    return rel if params[:min_progress].blank?
 
-    r.where("progress >= ?", params[:min_progress])
+    rel.where(progress: (params[:min_progress])..)
   end
 
-  def sorted(r)
+  def sorted(rel)
     case params[:sort]
-    when "progress_asc" then r.order(progress: :asc)
-    when "progress_desc" then r.order(progress: :desc)
-    else r.order(created_at: :desc)
+    when "progress_asc" then rel.order(progress: :asc)
+    when "progress_desc" then rel.order(progress: :desc)
+    else rel.order(created_at: :desc)
     end
   end
 end

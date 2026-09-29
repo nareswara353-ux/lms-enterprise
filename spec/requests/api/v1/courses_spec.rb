@@ -15,7 +15,7 @@ RSpec.describe "Api::V1::Courses", type: :request do
     it "excludes draft courses" do
       get "/api/v1/courses"
       json = response.parsed_body
-      ids = json["data"].map { |c| c["id"] }
+      ids = json["data"].pluck("id")
       expect(ids).not_to include(draft_course.id)
     end
 
