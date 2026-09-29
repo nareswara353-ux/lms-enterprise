@@ -60,7 +60,7 @@ group :test do
   gem "database_cleaner-active_record", "~> 2.1"
   gem "pundit-matchers", "~> 4.0"
   gem "selenium-webdriver", "~> 4.25"
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers", "~> 8.0"
 end
 
 gem "json", "~> 2.7"

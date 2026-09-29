@@ -427,8 +427,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    shoulda-matchers (6.5.0)
-      activesupport (>= 5.2.0)
+    shoulda-matchers (8.0.1)
+      activesupport (>= 7.2)
     sidekiq (8.0.10)
       connection_pool (>= 2.5.0)
       json (>= 2.9.0)
@@ -531,7 +531,7 @@ DEPENDENCIES
   rspec-rails (~> 6.1)
   rubocop-rails (~> 2.24)
   selenium-webdriver (~> 4.25)
-  shoulda-matchers (~> 6.0)
+  shoulda-matchers (~> 8.0)
   sidekiq (~> 8.0.10)
   sprockets-rails
   stimulus-rails
@@ -706,7 +706,7 @@ CHECKSUMS
   sass-embedded (1.104.1-x86_64-linux-musl) sha256=bcb547d0a8aeace54c2d0a7252792763d2570cf0118060d6181ca18e7916f509
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.49.0) sha256=b430f091a3cababb356b6f6132e0e4f385b017819355f563557e1537819edc89
-  shoulda-matchers (6.5.0) sha256=ef6b572b2bed1ac4aba6ab2c5ff345a24b6d055a93a3d1c3bfc86d9d499e3f44
+  shoulda-matchers (8.0.1) sha256=5dbb46e5765b9da225111b085e0819e8c8a121ff94bba430a153eb1ea2c60288
   sidekiq (8.0.10) sha256=37ccd8da8d46f6779b8655cb30c1bfcb0decd57e890ff56d8b8252a5d9a84cd6
   sprockets (4.4.1) sha256=fbd665edad0916de5c7abefef0fc616866a60c5e48ce2846f39ac3fc5df9e184
   sprockets-rails (3.5.2) sha256=a9e88e6ce9f8c912d349aa5401509165ec42326baf9e942a85de4b76dbc4119e
