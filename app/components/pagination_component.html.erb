@@ -1,0 +1,13 @@
+<% if total_pages > 1 %>
+  <nav class="pagination">
+    <% if prev_page? %>
+      <%= link_to "← Prev", url_for(params.merge(page: current_page - 1)), class: "page-link" %>
+    <% end %>
+    <% page_range.each do |page| %>
+      <%= link_to page, url_for(params.merge(page: page)), class: "page-link #{'active' if page == current_page}" %>
+    <% end %>
+    <% if next_page? %>
+      <%= link_to "Next →", url_for(params.merge(page: current_page + 1)), class: "page-link" %>
+    <% end %>
+  </nav>
+<% end %>
