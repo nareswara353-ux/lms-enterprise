@@ -1,5 +1,4 @@
 class Course < ApplicationRecord
-
   def to_param
     slug
   end
@@ -42,5 +41,4 @@ class Course < ApplicationRecord
   def generate_slug
     self.slug = title.parameterize
   end
-
 end

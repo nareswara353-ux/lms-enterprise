@@ -1,5 +1,4 @@
 class CourseModule < ApplicationRecord
-
   def to_param
     id.to_s
   end
@@ -26,5 +25,4 @@ class CourseModule < ApplicationRecord
   def set_default_position
     self.position = course.course_modules.maximum(:position).to_i + 1 if position.blank?
   end
-
 end
