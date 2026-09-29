@@ -59,3 +59,12 @@ Capybara.configure do |config|
   config.default_max_wait_time = 5
   config.server = :puma, { Silent: true }
 end
+
+require "view_component/test_helpers"
+require "view_component/system_test_helpers"
+
+RSpec.configure do |config|
+  config.include ViewComponent::TestHelpers, type: :component
+  config.include ViewComponent::SystemTestHelpers, type: :component
+  config.include Capybara::RSpecMatchers, type: :component
+end

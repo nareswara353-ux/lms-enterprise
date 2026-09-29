@@ -1,5 +1,5 @@
 <li class="lesson-item <%= status_class %>">
   <span class="lesson-status"><%= status_icon %></span>
-  <%= link_to lesson.title, lesson_path(lesson), class: "lesson-title" %>
+  <%= link_to lesson.title, Rails.application.routes.url_helpers.course_module_lesson_path(lesson.course_module, lesson), class: "lesson-title" %>
   <span class="lesson-duration"><%= lesson.duration %> menit</span>
 </li>

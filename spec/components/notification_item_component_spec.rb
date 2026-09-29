@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe NotificationItemComponent, type: :component do
-  let(:notification) { build(:notification, message: "Hello!", read: false) }
+  let(:notification) { create(:notification, message: "Hello!", read: false) }
 
   it "renders message" do
     render_inline(described_class.new(notification: notification))
@@ -14,7 +14,7 @@ RSpec.describe NotificationItemComponent, type: :component do
   end
 
   it "does not apply unread class when read" do
-    notification.read = true
+    notification.update!(read: true)
     render_inline(described_class.new(notification: notification))
     expect(page).not_to have_css(".notification-item.unread")
   end

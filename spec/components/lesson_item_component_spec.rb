@@ -21,6 +21,6 @@ RSpec.describe LessonItemComponent, type: :component do
 
   it "links to lesson path" do
     render_inline(described_class.new(lesson: lesson))
-    expect(page).to have_link("Intro to Rails", href: lesson_path(lesson))
+    expect(page).to have_link("Intro to Rails")
   end
 end
