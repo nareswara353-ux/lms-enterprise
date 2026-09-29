@@ -1,4 +1,8 @@
 class Lesson < ApplicationRecord
+
+  def to_param
+    slug
+  end
   enum :status, { draft: 0, published: 1 }
   enum :lesson_type, { video: 0, text: 1, quiz: 2 }
 
@@ -32,7 +36,4 @@ class Lesson < ApplicationRecord
     self.position = course_module.lessons.maximum(:position).to_i + 1 if position.blank?
   end
 
-  def to_param
-    slug
-  end
 end

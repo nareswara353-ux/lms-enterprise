@@ -1,4 +1,8 @@
 class Course < ApplicationRecord
+
+  def to_param
+    slug
+  end
   include PgSearch::Model
 
   pg_search_scope :search_by_title, against: [:title, :description], using: { tsearch: { prefix: true } }
@@ -39,7 +43,4 @@ class Course < ApplicationRecord
     self.slug = title.parameterize
   end
 
-  def to_param
-    slug
-  end
 end

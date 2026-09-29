@@ -1,4 +1,8 @@
 class CourseModule < ApplicationRecord
+
+  def to_param
+    id.to_s
+  end
   enum :status, { draft: 0, published: 1 }
 
   belongs_to :course
@@ -23,7 +27,4 @@ class CourseModule < ApplicationRecord
     self.position = course.course_modules.maximum(:position).to_i + 1 if position.blank?
   end
 
-  def to_param
-    id.to_s
-  end
 end
