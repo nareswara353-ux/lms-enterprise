@@ -4,11 +4,14 @@ class NotificationsController < ApplicationController
   end
 
   def update
-    notification = current_user.notifications.find(params[:id])
+    notification = current_user.notifications.find(params.expect(:id))
     notification.mark_as_read!
     respond_to do |format|
       format.html { redirect_to notifications_path, notice: "Notifikasi ditandai sudah dibaca." }
-      format.turbo_stream { render turbo_stream: turbo_stream.replace(helpers.dom_id(notification), partial: "notifications/notification", locals: { notification: notification }) }
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.replace(helpers.dom_id(notification), partial: "notifications/notification",
+                                                                                locals: { notification: notification })
+      }
     end
   end
 
