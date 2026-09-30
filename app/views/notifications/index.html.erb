@@ -4,13 +4,8 @@
 
 <%= button_to "Tandai Semua Sudah Dibaca", mark_all_read_notifications_path, method: :patch, class: "btn" %>
 
-<ul class="notifications-list">
+<ul class="notifications-list" id="notifications-list">
   <% @notifications.each do |notif| %>
-    <li class="<%= 'unread' unless notif.read %>">
-      <span><%= notif.message %></span>
-      <% unless notif.read %>
-        <%= button_to "Tandai Dibaca", notification_path(notif), method: :patch, class: "btn-link" %>
-      <% end %>
-    </li>
+    <%= render "notifications/notification", notification: notif %>
   <% end %>
 </ul>
