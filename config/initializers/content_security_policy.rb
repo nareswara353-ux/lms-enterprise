@@ -5,6 +5,10 @@
 # https://guides.rubyonrails.org/security.html#content-security-policy-header
 
 # Rails.application.configure do
+  config.content_security_policy do |policy|
+    policy.connect_src :self, :https, "wss:", "ws:"
+  end
+
 #   config.content_security_policy do |policy|
 #     policy.default_src :self, :https
 #     policy.font_src    :self, :https, :data
