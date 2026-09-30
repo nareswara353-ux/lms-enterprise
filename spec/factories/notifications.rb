@@ -4,5 +4,9 @@ FactoryBot.define do
     message { Faker::Lorem.sentence }
     url { "/dashboard" }
     read { false }
+
+    trait :read do
+      read { true }
+    end
   end
 end
