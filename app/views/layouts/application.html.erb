@@ -18,7 +18,7 @@
         <% if user_signed_in? %>
           <%= link_to "Dashboard", dashboard_path %>
           <%= link_to "Courses", courses_path %>
-          <%= link_to "Notifications (#{current_user.notifications.unread.count})", notifications_path %>
+          <%= link_to notifications_path do %>Notifications <%= render "notifications/badge" %><% end %>
           <% if current_user.instructor? || current_user.admin? %>
             <%= link_to "Instructor", instructor_dashboard_path %>
           <% end %>
